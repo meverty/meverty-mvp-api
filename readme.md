@@ -1,3 +1,3 @@
-# meverty-api
+# Meverty API
 
-Meverty API service
+API for Meverty Service
