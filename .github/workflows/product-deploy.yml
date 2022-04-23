@@ -9,7 +9,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  product-deploy:
+  dev-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,14 @@ jobs:
       with:
         node-version: 16
         cache: 'npm'
+    - run: npm install
+    - uses: actions/setup-python
+      with: 
+        python-version: '3.8'
+        cache: 'pip'
+
+    - run: pip install -r requirements.txt
+
     - uses: serverless/github-action@v3
       with:
-        args: deploy
-    - run: make product-deploy VERSION=v1
+        args: deploy -s dev
