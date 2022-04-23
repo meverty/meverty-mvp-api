@@ -18,13 +18,6 @@ jobs:
         node-version: 16
         cache: 'npm'
     - run: npm install
-    - uses: actions/setup-python@v3
-      with: 
-        python-version: '3.8'
-        cache: 'pip'
-
-    - run: pip install -r requirements.txt
-
     - uses: serverless/github-action@v3
       with:
-        args: deploy -s v1
+        args: deploy -s dev
