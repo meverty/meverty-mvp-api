@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 class Member:
     def __init__(self, member_name, member_type, id=0, join_timestamp=datetime.now()):
         self.id = id

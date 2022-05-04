@@ -12,4 +12,5 @@ api = Api(app, version='1.0', title='Meverty API', description='API description 
 api.add_namespace(Metaverse, '/metaverse')
 api.add_namespace(Account, '/account')
 
+
 FlaskInjector(app=app, modules=[configure])
