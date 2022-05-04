@@ -2,45 +2,32 @@ from datetime import datetime
 
 
 class Campaign:
-    def __init__(self, campaign_name, member_name, id=0, impression=0, image_url="", setup_date=datetime.now()):
+    def __init__(self, campaign_name, member_id, campaign_type, interaction_url, id=0, image_url="", setup_date=datetime.now(), activated = True):
         self._id = id
-        self._member_name = member_name
+        self._member_id = member_id
         self._setup_date = setup_date
 
         self.campaign_name = campaign_name
-        self.impression = impression
         self.image_url = image_url
-    
+        self.campaign_type = campaign_type
+        self.interaction_url = interaction_url
+        self.activated = activated
     
     @property
     def id(self):
         return self._id
-    
 
     @property
-    def campaingn_name(self):
+    def campaign_name(self):
         return self._campaign_name
 
-    @campaingn_name.setter
+    @campaign_name.setter
     def campaign_name(self, value):
         self._campaign_name = value
 
-
     @property
-    def member_name(self):
-        return self._member_name
-
-
-    @property
-    def impression(self):
-        return self._impression
-
-    @impression.setter
-    def impression(self, value):
-        if value<0:
-            raise ValueError("impression must be bigger than 0")
-        self._impression = value
-
+    def member_id(self):
+        return self._member_id
 
     @property
     def image_url(self):
@@ -54,3 +41,28 @@ class Campaign:
     @property
     def setup_date(self):
         return self._setup_date
+
+    @property
+    def campaign_type(self):
+        return self._campaign_type
+    
+    @campaign_type.setter
+    def campaign_type(self, value):
+        self._campaign_type = value
+
+
+    @property
+    def interaction_url(self):
+        return self._interaction_url
+    
+    @interaction_url.setter
+    def interaction_url(self, value):
+        self._interaction_url = value
+
+    @property
+    def activated(self):
+        return self._activated
+
+    @activated.setter
+    def activated(self, value):
+        self._activated = value

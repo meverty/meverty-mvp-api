@@ -11,14 +11,17 @@ class MemberDAO:
         self._session = db_config.session
         MemberModel.__table__.create(bind = self._engine, checkfirst = True)
 
-    def insert_member(self, member:Member) -> bool:
-        model = MemberModel(member_name = member.member_name, join_date = datetime.now())
+    def insert_member(self, member:Member):
+        model = MemberModel(member)
+
         self._session.add(model)
         self._session.commit()
 
-    def search_member(self, member_name):
-        query_result = self._session.query(MemberModel).filter_by(member_name = member_name).all()
-        if len(query_result)==0:
+    def search_member(self, member_name) -> Member:
+        query_result = self._session.query(MemberModel).filter_by(member_name = member_name).first()
+
+        if query_result is None:
             return None
-        result = Member(query_result[0].member_name, query_result[0].join_date, id=query_result[0].id)
+
+        result = query_result.toEntity()
         return result
