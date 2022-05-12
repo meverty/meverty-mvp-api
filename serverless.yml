@@ -18,7 +18,6 @@ custom:
 plugins:
   - serverless-wsgi
   - serverless-python-requirements
-
 functions:
   api:
     handler: wsgi_handler.handler

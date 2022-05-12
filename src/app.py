@@ -1,4 +1,5 @@
 from account.account import Account
+from advertisement.advertisement import Advertisement
 from metaverse.metaverse import Metaverse
 from dependency import configure
 from flask import Flask, jsonify, request, make_response
@@ -11,6 +12,7 @@ api = Api(app, version='1.0', title='Meverty API', description='API description 
 
 api.add_namespace(Metaverse, '/metaverse')
 api.add_namespace(Account, '/account')
+api.add_namespace(Advertisement, '/advertisement')
 
 
 FlaskInjector(app=app, modules=[configure])
