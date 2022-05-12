@@ -16,3 +16,9 @@ class CampaignDAO:
         query_result = self._session.query(CampaignModel).filter_by(activated = True).order_by(func.random()).first()
         result = query_result.toEntity()
         return result
+
+    def insert_campaign(self, campaign:Campaign):
+        model = CampaignModel(campaign)
+
+        self._session.add(model)
+        self._session.commit()
