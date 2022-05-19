@@ -9,6 +9,7 @@ from entity.media import Media
 import boto3
 import constants
 
+
 class AdvertisementService:
     @inject
     def __init__(self, event_dao:EventDAO, campaign_dao:CampaignDAO, media_dao:MediaDAO):
@@ -30,3 +31,4 @@ class AdvertisementService:
 
         campaign.image_url = constants.BUCKET_ENDPOINT + '/' + access_key
         self._campaign_dao.insert_campaign(campaign)
+
