@@ -22,3 +22,12 @@ class CampaignDAO:
 
         self._session.add(model)
         self._session.commit()
+
+    def search_campaign(self, campaign_name) -> Campaign:
+        query_result = self._session.query(CampaignModel).filter_by(campaign_name = campaign_name).first()
+
+        if query_result is None:
+            return None
+
+        result = query_result.toEntity()
+        return result

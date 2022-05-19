@@ -13,7 +13,7 @@ custom:
     packRequirements: false
   pythonRequirements:
     pythonBin: python3
-    dockerizePip: false
+    dockerizePip: non-linux
 
 plugins:
   - serverless-wsgi

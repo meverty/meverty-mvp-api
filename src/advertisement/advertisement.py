@@ -5,6 +5,7 @@ from advertisement.advertisement_service import AdvertisementService
 from entity.campaign import Campaign
 from entity.event import Event
 from entity.media import Media
+from storage.s3connection import S3Connection
 
 Advertisement = Namespace('Advertisement')
 
@@ -19,8 +20,8 @@ class AdvertisementNewCampign(Resource):
     })
 
     @inject
-    def __init__(self, Advertisement_service:AdvertisementService, api):
-        self._Advertisement_service = Advertisement_service
+    def __init__(self, advertisement_service:AdvertisementService, api):
+        self._advertisement_service = advertisement_service
         super().__init__(api)
 
     @Advertisement.expect(campaign_model)
@@ -28,5 +29,20 @@ class AdvertisementNewCampign(Resource):
         """새로운 캠페인을 등록합니다."""
         params = request.get_json()
         campaign = Campaign(params['campaign_name'], params['member_id'], params['campaign_type'], params['interaction_url'])
-        result = self._Advertisement_service.new_campaign(campaign)
+        result = self._advertisement_service.new_campaign(campaign)
+        return jsonify(message={'result': result})
+
+
+@Advertisement.route("/setcampaignimage")
+class AdvertisementSetCampaignImage(Resource):
+    @inject
+    def __init__(self, advertisement_service:AdvertisementService, api):
+        self._advertisement_service = advertisement_service
+        super().__init__(api)
+
+    def post(self):
+        params = request.get_json()
+        file = request.files['file']
+        file.save['./temp']
+        result = self._advertisement_service.upload_image(params['campaign_name'])
         return jsonify(message={'result': result})
