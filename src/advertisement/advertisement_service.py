@@ -8,6 +8,7 @@ from entity.member import Member
 from entity.media import Media
 import boto3
 import constants
+import os
 
 
 class AdvertisementService:
@@ -21,14 +22,13 @@ class AdvertisementService:
         self._campaign_dao.insert_campaign(campaign)
         return True
 
-    def upload_image(self, campaign_name):
+    def upload_image(self, file, campaign_name):
         s3 = boto3.client('s3')
 
         campaign = self._campaign_dao.search_campaign(campaign_name)
 
-        access_key = '.'+campaign.campaign_name+'-'+campaign.id
-        s3.put_object(constants.AWS_S3_BUCKET_NAME, './temp', access_key)
+        access_key = campaign.campaign_name+'-'+str(campaign.id) + '.png'
+        s3.put_object(Bucket = constants.AWS_S3_BUCKET_NAME, Key = access_key, Body = file)
 
         campaign.image_url = constants.BUCKET_ENDPOINT + '/' + access_key
-        self._campaign_dao.insert_campaign(campaign)
-
+        self._campaign_dao.update_campaign(campaign)

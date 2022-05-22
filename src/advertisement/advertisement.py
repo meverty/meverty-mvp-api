@@ -44,8 +44,8 @@ class AdvertisementSetCampaignImage(Resource):
         super().__init__(api)
 
     def post(self):
-        params = request.get_json()
+        campaign_name = request.form.get('campaign_name')
         file = request.files['file']
-        file.save['./temp']
-        result = self._advertisement_service.upload_image(params['campaign_name'])
-        return jsonify(message={'result': result})
+        self._advertisement_service.upload_image(file, campaign_name)
+        # self._advertisement_service.upload_image(file, 'aa')
+        return jsonify(message={'result': 'ok'})
