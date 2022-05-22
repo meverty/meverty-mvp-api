@@ -12,6 +12,7 @@ custom:
     app: src/app.app
     packRequirements: false
   pythonRequirements:
+    pythonBin: python3
     dockerizePip: non-linux
 
 
