@@ -12,7 +12,7 @@ custom:
     app: src/app.app
     packRequirements: false
   pythonRequirements:
-    dockerizePip: true
+    dockerizePip: false
 
 plugins:
   - serverless-wsgi
