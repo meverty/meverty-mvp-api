@@ -14,6 +14,7 @@ custom:
   pythonRequirements:
     dockerizePip: non-linux
 
+
 plugins:
   - serverless-wsgi
   - serverless-python-requirements
