@@ -43,3 +43,7 @@ DB_PORT (3306)
 DB_NAME (v1: meverty-api, dev: meverty-dev)
 ```
 이후 Pull Request를 보내면 자동으로 dev stage에 배포됩니다.
+
+### Troubleshooting
+Lambda에 deploy할 때 500 Internal Server Error >> No module named 'wsgi-handler' 상황이 발생하면
+package-lock.json과 node-modules폴더를 삭제하고 다시 npm install을 실행한다.

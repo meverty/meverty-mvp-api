@@ -2,7 +2,8 @@ from datetime import datetime
 
 
 class Campaign:
-    def __init__(self, campaign_name, member_id, campaign_type, interaction_url, id=0, image_url="", setup_date=datetime.now(), activated = True):
+    def __init__(self, campaign_name, member_id, campaign_type, interaction_url, 
+                    id=0, image_url="https://d19748wxcujmgp.cloudfront.net/default.png", setup_date=datetime.now(), activated = True):
         self._id = id
         self._member_id = member_id
         self._setup_date = setup_date

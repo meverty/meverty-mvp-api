@@ -23,6 +23,12 @@ class CampaignDAO:
         self._session.add(model)
         self._session.commit()
 
+    def update_campaign(self, campaign:Campaign):
+        model = self._session.query(CampaignModel).filter_by(campaign_name = campaign.campaign_name).first()
+        model.image_url = campaign.image_url
+
+        self._session.commit()
+
     def search_campaign(self, campaign_name) -> Campaign:
         query_result = self._session.query(CampaignModel).filter_by(campaign_name = campaign_name).first()
 
