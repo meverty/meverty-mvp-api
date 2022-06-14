@@ -5,8 +5,11 @@ from dependency import configure
 from flask import Flask, jsonify, request, make_response
 from flask_injector import FlaskInjector
 from flask_restx import Api, Resource, reqparse
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+cors = CORS(app)
 
 api = Api(app, version='1.0', title='Meverty API', description='API description for Meverty Service')
 

@@ -25,7 +25,7 @@ class AccountData(Resource):
         if result is None:
             return jsonify(message='No Data')
         
-        return jsonify(message={
+        return jsonify({
             'id': result.id, 
             'member_name': result.member_name, 
             'member_type': result.member_type,
@@ -39,4 +39,4 @@ class AccountData(Resource):
         params = request.get_json()
         member = Member(member_name=member, member_type=params['member_type'])
         result = self._account_service.join(member)
-        return jsonify(message={'result': result})
+        return jsonify({'result': result})

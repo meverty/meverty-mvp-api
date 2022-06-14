@@ -48,4 +48,4 @@ class AdvertisementSetCampaignImage(Resource):
         file = request.files['file']
         self._advertisement_service.upload_image(file, campaign_name)
         # self._advertisement_service.upload_image(file, 'aa')
-        return jsonify(message={'result': 'ok'})
+        return jsonify(message={'result': True})
