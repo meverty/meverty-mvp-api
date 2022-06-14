@@ -30,5 +30,5 @@ class AdvertisementService:
         access_key = campaign.campaign_name+'-'+str(campaign.id) + '.png'
         s3.put_object(Bucket = constants.AWS_S3_BUCKET_NAME, Key = access_key, Body = file)
 
-        campaign.image_url = constants.BUCKET_ENDPOINT + '/' + access_key
+        campaign.image_url = "https://" + constants.BUCKET_ENDPOINT + '/' + access_key
         self._campaign_dao.update_campaign(campaign)

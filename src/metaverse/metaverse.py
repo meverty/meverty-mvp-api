@@ -28,7 +28,7 @@ class MetaverseNewEvent(Resource):
         params = request.get_json()
         event = Event(params['campaign_id'], params['media_id'], params['fingerprint'], params['event_type'])
         result = self._metaverse_service.new_event(event)
-        return jsonify(message={'result': result})
+        return jsonify({'result': result})
 
 
 @Metaverse.route("/newmedia")
@@ -51,7 +51,7 @@ class MetaverseNewMedia(Resource):
         params = request.get_json()
         media = Media(params['member_id'], params['metaverse'], params['media_type'])
         result = self._metaverse_service.new_media(media)
-        return jsonify(message=result)
+        return jsonify({'result':result})
 
 
 @Metaverse.route("/getad")
@@ -65,7 +65,7 @@ class MetaverseGetAdURL(Resource):
         """무작위 광고 정보를 반환합니다."""
         campaign= self._metaverse_service.get_random_ad()
 
-        return jsonify(message = {
+        return jsonify({
             'campaign_name': campaign.campaign_name,
             'campaign_id':campaign.id, 
             'image_url': campaign.image_url, 
