@@ -37,3 +37,16 @@ class CampaignDAO:
 
         result = query_result.toEntity()
         return result
+
+    def search_campaign_by_id(self, campaign_id) -> Campaign:
+        query_result = self._session.query(CampaignModel).filter_by(id = campaign_id).first()
+
+        if query_result is None:
+            return None
+
+        result = query_result.toEntity()
+        return result
+
+    def all_campaigns(self):
+        campaigns = self._session.query(CampaignModel)
+        return [c.toEntity() for c in campaigns]
